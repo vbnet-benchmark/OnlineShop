@@ -1,0 +1,106 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="Site.master.vb" Inherits="OnlineShop.Site" %>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><asp:ContentPlaceHolder ID="TitleContent" runat="server" /></title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+
+    <!-- Custom Styles -->
+    <link href="Styles/site.css" rel="stylesheet" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+        /* Custom highlight for the active nav link */
+        .current-link {
+            font-weight: 700;         /* bold */
+            color: #0d6efd !important; /* Bootstrap primary color */
+            text-decoration: underline; /* optional underline */
+        }
+
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <form runat="server" class="flex-grow-1 d-flex flex-column">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-primary" href="../../../Default.aspx">MyEtsyClone</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <asp:HyperLink ID="lnkHome" runat="server" NavigateUrl="~/Default.aspx" CssClass="nav-link">Home</asp:HyperLink>
+                        </li>
+                        <li class="nav-item">
+                            <asp:HyperLink ID="lnkCategories" runat="server" NavigateUrl="~/Categories.aspx" CssClass="nav-link">Categories</asp:HyperLink>
+                        </li>
+                        <li class="nav-item">
+                            <asp:HyperLink ID="lnkShops" runat="server" NavigateUrl="~/ShopSearch.aspx" CssClass="nav-link">Shops</asp:HyperLink>
+                        </li>
+                       <asp:UpdatePanel ID="upCart" runat="server" UpdateMode="Conditional">
+    <ContentTemplate>
+        <asp:HyperLink ID="lnkCart" runat="server" NavigateUrl="~/shop/account/Cart.aspx" CssClass="nav-link">
+            <i class="fa fa-shopping-cart me-1"></i>Cart (<asp:Label ID="lblCartCount" runat="server" Text="0"></asp:Label>)
+        </asp:HyperLink>
+    </ContentTemplate>
+</asp:UpdatePanel>
+
+                        <li class="nav-item">
+                            <asp:HyperLink ID="lnkLogin" runat="server" NavigateUrl="~/shop/account/Login.aspx" CssClass="nav-link btn btn-outline-primary ms-2">Login</asp:HyperLink>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Search & Category Bar -->
+        <div class="bg-light py-3 shadow-sm">
+            <div class="container d-flex flex-column flex-md-row align-items-center gap-2">
+                <div class="flex-grow-1">
+                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search for items, shops, or categories..." />
+                </div>
+                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" />
+
+                <div class="ms-md-3">
+<%--                    <asp:DropDownList ID="ddlCategories" runat="server" CssClass="form-select">
+                        <asp:ListItem Text="All Categories" Value="" Selected="True" />
+                    </asp:DropDownList>--%>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="flex-grow-1 my-4">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-white mt-auto py-4">
+            <div class="container text-center">
+                <p class="mb-2">&copy; <%= DateTime.Now.Year %> MyEtsyClone. All rights reserved.</p>
+                <div>
+                    <a class="text-white mx-2" href="~/About.aspx">About</a>
+                    <a class="text-white mx-2" href="~/Contact.aspx">Contact</a>
+                    <a class="text-white mx-2" href="~/Terms.aspx">Terms</a>
+                </div>
+            </div>
+        </footer>
+    </form>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

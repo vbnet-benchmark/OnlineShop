@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Copy this file to `appSettings.config` and fill in real values.
+  The real file is gitignored so credentials never reach git.
+-->
+<appSettings>
+  <add key="SmtpUser" value="YOUR_SMTP_USER" />
+  <add key="SmtpPassword" value="YOUR_SMTP_APP_PASSWORD" />
+</appSettings>
